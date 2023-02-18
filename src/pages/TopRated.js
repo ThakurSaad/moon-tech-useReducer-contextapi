@@ -26,7 +26,6 @@ const TopRated = () => {
       .filter((product) => product.rating > 3)
       .map((product) => <ProductCard key={product._id} product={product} />);
   }
-  console.log(products);
 
   return (
     <section>

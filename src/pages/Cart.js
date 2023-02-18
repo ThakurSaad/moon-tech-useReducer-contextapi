@@ -1,10 +1,41 @@
 import React from "react";
+import ProductCard from "../components/ProductCard";
+import { useProducts } from "../context/ProductProvider";
 
 const Cart = () => {
+  const {
+    state: { loading, cart, error },
+  } = useProducts();
+
+  let content;
+
+  if (loading) {
+    content = <p>Loading...</p>;
+  }
+
+  if (error) {
+    content = <p>Something went wrong</p>;
+  }
+
+  if (!loading && !error && cart.length === 0) {
+    content = <p>Nothing to show. Product list is empty</p>;
+  }
+
+  if (!loading && !error && cart.length) {
+    content = cart
+      .filter((product) => product.rating > 3)
+      .map((product) => (
+        <ProductCard key={`${product._id}`} product={product} />
+      ));
+  }
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
-      <h1>This is cart</h1>
-    </div>
+    <section>
+      <h1>This is top rated page</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
+        {content}
+      </div>
+    </section>
   );
 };
 
