@@ -1,5 +1,5 @@
 import React from "react";
-import { BiListPlus } from "react-icons/bi";
+import { BiListMinus, BiListPlus } from "react-icons/bi";
 import { useProducts } from "../context/ProductProvider";
 import { actionTypes } from "../state/productState/actionTypes";
 
@@ -41,6 +41,17 @@ const ProductCard = ({ product }) => {
           }
         >
           <BiListPlus className="text-white" />
+        </button>
+      </div>
+      <div className="flex gap-2 mt-5">
+        <button className="bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold">
+          Remove from cart
+        </button>
+        <button
+          title="Remove from wishlist"
+          className="bg-indigo-500  py-1 px-2 rounded-full"
+        >
+          <BiListMinus className="text-white" />
         </button>
       </div>
     </div>
